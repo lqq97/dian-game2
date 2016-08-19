@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,div{ padding: 0; margin: 0;}
+     .ball{ width: 500px; height: 500px; background: #000; border-radius:50%;margin: 0 auto; }
+      .ball div{ float:left; width: 50%; height: 50%; border-radius: 50%;}
+    </style>
+</head>
+<body>
+<div class="ball" id="ball">
+
+</div>
+<script>
+    var ballNode=document.getElementById('ball');
+    ballNode.onclick=fun;
+    function fun() {
+        var frag=document.createDocumentFragment();
+        for(var i=0;i<4;i++){
+            var div=document.createElement('div');
+            div.style.background=colorFun();
+            div.onclick=fun;
+            frag.appendChild(div);
+        }
+        this.style.background='none';
+        this.appendChild(frag);
+        this.onclick=null;
+    }
+    //#ffffff的写法；
+   /* function colorFun(){
+        var colorVal='#';
+        var arr=['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+        for( var i=0;i<6;i++){
+            var num=Math.floor(Math.random()*16);
+            colorVal+=arr[num];
+
+        }
+        return colorVal;
+    }
+    */
+    //rgb（255，255，255）
+
+    function colorFun(){
+        var colorVal='rgb(';
+        for(var i=0;i<3;i++) {
+            rgbVal = '';
+            if (i != 2) {
+                rgbVal = Math.floor(Math.random() * 256) + ',';
+            }
+            else if (i = 2) {
+                rgbVal = Math.floor(Math.random() * 256) + ')';
+            }
+            colorVal += rgbVal;
+        }
+            return colorVal;
+    }
+</script>
+</body>
+</html>
